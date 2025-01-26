@@ -20,9 +20,9 @@ import struct
 CLIENT = CLIENT()
 COMPLETED_BTN = InlineKeyboardMarkup(
   [[
-    InlineKeyboardButton('💟 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ 💟', url='https://t.me/VJ_Bot_Disscussion')
+    InlineKeyboardButton('💟 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ 💟', url='https://t.me/+4ZZgeoDvdn8wNDFl')
   ],[
-    InlineKeyboardButton('💠 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 💠', url='https://t.me/vj_botz')
+    InlineKeyboardButton('💠 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 💠', url='https://t.me/Reconic_Bots')
   ]]
 )
 CANCEL_BTN = InlineKeyboardMarkup([[InlineKeyboardButton('• ᴄᴀɴᴄᴇʟ', 'terminate_frwd')]])
@@ -74,7 +74,7 @@ async def unequify(client, message):
    user_id = message.from_user.id
    temp.CANCEL[user_id] = False
    if temp.lock.get(user_id) and str(temp.lock.get(user_id))=="True":
-      return await message.reply("**please wait until previous task complete**")
+      return await message.reply("**⚠️ 𝙋𝙇𝙀𝘼𝙎𝙀 𝙒𝘼𝙄𝙏,𝙐𝙉𝙏𝙄𝙇 𝙋𝙍𝙀𝙑𝙄𝙊𝙐𝙎 𝙏𝘼𝙎𝙆 𝘾𝙊𝙈𝙋𝙇𝙀𝙏𝙀 ⚠️**")
    _bot = await db.get_userbot(user_id)
    if not _bot:
       return await message.reply("<b>Need userbot to do this process. Please add a userbot using /settings</b>")
