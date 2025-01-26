@@ -59,7 +59,7 @@ async def settings_query(bot, query):
      buttons.append([InlineKeyboardButton('back', 
                       callback_data="settings#main")])
      await query.message.edit_text(
-       "<b><u>My Bots</b></u>\n\n<b>You can manage your bots in here</b>",
+       "<b><u>My Bots</b></u>\n\n<b>ʏᴏᴜ ᴄᴀɴ ᴍᴀɴᴀɢᴇ ʏᴏᴜʀ ʙᴏᴛs ɪɴ ʜᴇʀᴇ</b>",
        reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="addbot":
@@ -89,7 +89,7 @@ async def settings_query(bot, query):
      buttons.append([InlineKeyboardButton('back', 
                       callback_data="settings#main")])
      await query.message.edit_text( 
-       "<b><u>My Channels</b></u>\n\n<b>you can manage your target chats in here</b>",
+       "<b><u>Mʏ Cʜᴀɴɴᴇʟs</b></u>\n\n<b>ʏᴏᴜ ᴄᴀɴ ᴍᴀɴᴀɢᴇ ʏᴏᴜʀ ᴛᴀʀɢᴇᴛ ᴄʜᴀᴛꜱ ɪɴ ʜᴇʀᴇ</b>",
        reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="addchannel":  
@@ -100,7 +100,7 @@ async def settings_query(bot, query):
                   "<b>process canceled</b>",
                   reply_markup=InlineKeyboardMarkup(buttons))
      elif not chat_ids.forward_date:
-        return await chat_ids.reply("**This is not a forward message**")
+        return await chat_ids.reply("**Tʜɪs ɪs ɴᴏᴛ ᴀ ꜰᴏʀᴡᴀʀᴅ ᴍᴇssᴀɢᴇ ⚠️**")
      else:
         chat_id = chat_ids.forward_from_chat.id
         title = chat_ids.forward_from_chat.title
@@ -108,7 +108,7 @@ async def settings_query(bot, query):
         username = "@" + username if username else "private"
      chat = await db.add_channel(user_id, chat_id, title, username)
      await query.message.reply_text(
-        "<b>Successfully updated</b>" if chat else "<b>This channel already added</b>",
+        "<b>Successfully updated</b>" if chat else "<b>Tʜɪs ᴄʜᴀɴɴᴇʟ ᴀʟʀᴇᴀᴅʏ ᴀᴅᴅᴇᴅ</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="editbot": 
@@ -116,7 +116,7 @@ async def settings_query(bot, query):
      TEXT = Script.BOT_DETAILS if bot['is_bot'] else Script.USER_DETAILS
      buttons = [[InlineKeyboardButton('❌ ʀᴇᴍᴏᴠᴇ ❌', callback_data=f"settings#removebot")
                ],
-               [InlineKeyboardButton('back', callback_data="settings#bots")]]
+               [InlineKeyboardButton('• ʙᴀᴄᴋ •', callback_data="settings#bots")]]
      await query.message.edit_text(
         TEXT.format(bot['name'], bot['id'], bot['username']),
         reply_markup=InlineKeyboardMarkup(buttons))
@@ -126,7 +126,7 @@ async def settings_query(bot, query):
      TEXT = Script.USER_DETAILS
      buttons = [[InlineKeyboardButton('❌ ʀᴇᴍᴏᴠᴇ ❌', callback_data=f"settings#removeuserbot")
                ],
-               [InlineKeyboardButton('back', callback_data="settings#bots")]]
+               [InlineKeyboardButton('• ʙᴀᴄᴋ •', callback_data="settings#bots")]]
      await query.message.edit_text(
         TEXT.format(bot['name'], bot['id'], bot['username']),
         reply_markup=InlineKeyboardMarkup(buttons))
@@ -186,7 +186,7 @@ async def settings_query(bot, query):
                InlineKeyboardButton('back', 
                  callback_data="settings#caption")]]
      await query.message.edit_text(
-        f"<b><u>YOUR CUSTOM CAPTION</b></u>\n\n<code>{data['caption']}</code>",
+        f"<b><u>Yᴏᴜʀ Cᴜsᴛᴏᴍ Cᴀᴘᴛɪᴏɴ</b></u>\n\n<code>{data['caption']}</code>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="deletecaption":
@@ -197,7 +197,7 @@ async def settings_query(bot, query):
 
   elif type=="addcaption":
      await query.message.delete()
-     caption = await bot.ask(query.message.chat.id, "Send your custom caption\n/cancel - <code>cancel this process</code>")
+     caption = await bot.ask(query.message.chat.id, "sᴇɴᴅ ʏᴏᴜʀ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ\n/cancel - <code>ᴄᴀɴᴄᴇʟ ᴛʜɪs ᴘʀᴏᴄᴇss</code>")
      if caption.text=="/cancel":
         return await caption.reply_text(
                   "<b>process canceled !</b>",
@@ -206,11 +206,11 @@ async def settings_query(bot, query):
          caption.text.format(filename='', size='', caption='')
      except KeyError as e:
          return await caption.reply_text(
-            f"<b>wrong filling {e} used in your caption. change it</b>",
+            f"<b>ᴡʀᴏɴɢ ꜰɪʟʟɪɴɢ {e} ᴜsᴇᴅ ɪɴ ʏᴏᴜʀ ᴄᴀᴘᴛɪᴏɴ. ᴄʜᴀɴɢᴇ ɪᴛ</b>",
             reply_markup=InlineKeyboardMarkup(buttons))
      await update_configs(user_id, 'caption', caption.text)
      await caption.reply_text(
-        "<b>successfully updated</b>",
+        "<b>sᴜᴄᴄᴇsꜰᴜʟʟʏ ᴜᴘᴅᴀᴛᴇᴅ ✅</b>",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="button":
@@ -227,17 +227,17 @@ async def settings_query(bot, query):
      buttons.append([InlineKeyboardButton('back', 
                       callback_data="settings#main")])
      await query.message.edit_text(
-        "<b><u>CUSTOM BUTTON</b></u>\n\n<b>You can set a inline button to messages.</b>\n\n<b><u>FORMAT:</b></u>\n`[Forward bot][buttonurl:https://t.me/mychannelurl]`\n",
+        "<b><u>CUSTOM BUTTON</b></u>\n\n<b>ʏᴏᴜ ᴄᴀɴ sᴇᴛ ᴀɴ ɪɴʟɪɴᴇ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴍᴇꜱꜱᴀɢᴇꜱ.</b>\n\n<b><u>FORMAT:</b></u>\n`[Forward bot][buttonurl:https://t.me/mychannelurl]`\n",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="addbutton":
      await query.message.delete()
-     ask = await bot.ask(user_id, text="**Send your custom button.\n\nFORMAT:**\n`[forward bot][buttonurl:https://t.me/url]`\n")
+     ask = await bot.ask(user_id, text="**Sᴇɴᴅ ʏᴏᴜʀ ᴄᴜsᴛᴏᴍ ʙᴜᴛᴛᴏɴ.\n\nFORMAT:**\n`[forward bot][buttonurl:https://t.me/url]`\n")
      button = parse_buttons(ask.text.html)
      if not button:
         return await ask.reply("**INVALID BUTTON**")
      await update_configs(user_id, 'button', ask.text.html)
-     await ask.reply("**Successfully button added**",
+     await ask.reply("**sᴜᴄᴄᴇssғʟꜰᴜʟʟʏ ʙᴜᴛᴛᴏɴ ᴀᴅᴅᴇᴅ ✅**",
              reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="seebutton":
@@ -245,13 +245,13 @@ async def settings_query(bot, query):
       button = parse_buttons(button, markup=False)
       button.append([InlineKeyboardButton("• ʙᴀᴄᴋ •", "settings#button")])
       await query.message.edit_text(
-         "**YOUR CUSTOM BUTTON**",
+         "**Yᴏᴜʀ Cᴜsᴛᴏᴍ Bᴜᴛᴛᴏɴ**",
          reply_markup=InlineKeyboardMarkup(button))
 
   elif type=="deletebutton":
      await update_configs(user_id, 'button', None)
      await query.message.edit_text(
-        "**Successfully button deleted**",
+        "**sᴜᴄᴄᴇssꜰᴜʟʟʏ ʙᴜᴛᴛᴏɴ ᴅᴇʟᴇᴛᴇᴅ ✅**",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="database":
@@ -286,7 +286,7 @@ async def settings_query(bot, query):
         await udb.drop_all()
         await udb.close()
      else:
-        return await uri.reply("<b>Invalid Mongodb Url Cant Connect With This Uri</b>",
+        return await uri.reply("<b>⚠️ Iɴᴠᴀʟɪᴅ MᴏɴɢᴏDB ᴜʀʟ, ᴄᴀɴ'ᴛ ᴄᴏɴɴᴇᴄᴛ ᴡɪᴛʜ ᴛʜɪs ᴜʀʟ ⚠️</b>",
                   reply_markup=InlineKeyboardMarkup(buttons))
      await update_configs(user_id, 'db_uri', uri.text)
      await uri.reply("**Successfully database url added**",
@@ -327,14 +327,14 @@ async def settings_query(bot, query):
     settings = await get_configs(user_id)
     size = settings.get('min_size', 0)
     await query.message.edit_text(
-       f'<b><u>SIZE LIMIT</b></u><b>\n\nyou can set file Minimum size limit to forward\n\nfiles with greater than `{size} MB` will forward</b>',
+       f'<b><u>SIZE LIMIT</b></u><b>\n\nʏᴏᴜ ᴄᴀɴ sᴇᴛ ꜰɪʟᴇ ᴍᴀxɪᴍᴜᴍ sɪᴢᴇ ʟɪᴍɪᴛ ᴛᴏ ꜰᴏʀᴡᴀʀᴅ\n\nꜰɪʟᴇs ᴡɪᴛʜ ɢʀᴇᴀᴛᴇʀ ᴛʜᴀɴ `{size} MB` will forward</b>',
        reply_markup=size_button(size))
      
   elif type.startswith("maxfile_size"):
     settings = await get_configs(user_id)
     size = settings.get('max_size', 0)
     await query.message.edit_text(
-       f'<b><u>Max SIZE LIMIT</b></u><b>\n\nyou can set file Maximum size limit to forward\n\nfiles with less than `{size} MB` will forward</b>',
+       f'<b><u>Max SIZE LIMIT</b></u><b>\n\nʏᴏᴜ ᴄᴀɴ sᴇᴛ ꜰɪʟᴇ ᴍᴀxɪᴍᴜᴍ sɪᴢᴇ ʟɪᴍɪᴛ ᴛᴏ ꜰᴏʀᴡᴀʀᴅ\n\nꜰɪʟᴇꜱ ᴡɪᴛʜ ʟᴇss ᴛʜᴀɴ `{size} MB` will forward</b>',
        reply_markup=maxsize_button(size))
 
   elif type.startswith("update_size"):
@@ -344,7 +344,7 @@ async def settings_query(bot, query):
     await update_configs(user_id, 'min_size', size)
     i, limit = size_limit((await get_configs(user_id))['size_limit'])
     await query.message.edit_text(
-       f'<b><u>SIZE LIMIT</b></u><b>\n\nyou can set file Minimum size limit to forward\n\nfiles with greater than `{size} MB` will forward</b>',
+       f'<b><u>SIZE LIMIT</b></u><b>\n\nʏᴏᴜ ᴄᴀɴ sᴇᴛ ꜰɪʟᴇ ᴍᴀxɪᴍᴜᴍ sɪᴢᴇ ʟɪᴍɪᴛ ᴛᴏ ꜰᴏʀᴡᴀʀᴅ\n\nꜰɪʟᴇs ᴡɪᴛʜ ɢʀᴇᴀᴛᴇʀ ᴛʜᴀɴ {size} MB` will forward</b>',
        reply_markup=size_button(size))
      
   elif type.startswith("maxupdate_size"):
@@ -354,7 +354,7 @@ async def settings_query(bot, query):
     await update_configs(user_id, 'max_size', size)
     i, limit = size_limit((await get_configs(user_id))['size_limit'])
     await query.message.edit_text(
-       f'<b><u>Max SIZE LIMIT</b></u><b>\n\nyou can set file Maximum size limit to forward\n\nfiles with less than `{size} MB` will forward</b>',
+       f'<b><u>Max SIZE LIMIT</b></u><b>\n\nʏᴏᴜ ᴄᴀɴ sᴇᴛ ꜰɪʟᴇ ᴍᴀxɪᴍᴜᴍ sɪᴢᴇ ʟɪᴍɪᴛ ᴛᴏ ꜰᴏʀᴡᴀʀᴅ\n\nꜰɪʟᴇꜱ ᴡɪᴛʜ ʟᴇss ᴛʜᴀɴ `{size} MB` will forward</b>',
        reply_markup=maxsize_button(size))
 
   elif type.startswith('update_limit'):
@@ -362,12 +362,12 @@ async def settings_query(bot, query):
     limit, sts = size_limit(limit)
     await update_configs(user_id, 'size_limit', limit) 
     await query.message.edit_text(
-       f'<b><u>SIZE LIMIT</b></u><b>\n\nyou can set file size limit to forward\n\nStatus: files with {sts} `{size} MB` will forward</b>',
+       f'<b><u>SIZE LIMIT</b></u><b>\n\nʏᴏᴜ ᴄᴀɴ sᴇᴛ ғɪʟᴇ sɪᴢᴇ ʟɪᴍɪᴛ ᴛᴏ ꜰᴏʀᴡᴀʀᴅ\n\nSᴛᴀᴛᴜs: files with {sts} `{size} MB` will forward</b>',
        reply_markup=size_button(int(size)))
 
   elif type == "add_extension":
     await query.message.delete() 
-    ext = await bot.ask(user_id, text="**please send your extensions (seperete by space)**")
+    ext = await bot.ask(user_id, text="**ᴘʟᴇᴀsᴇ sᴇɴᴅ ʏᴏᴜʀ ᴇxᴛᴇɴsɪᴏɴs (seperete by space)**")
     if ext.text == '/cancel':
        return await ext.reply_text(
                   "<b>process canceled</b>",
@@ -407,13 +407,13 @@ async def settings_query(bot, query):
   elif type == "rmve_all_extension":
     await update_configs(user_id, 'extension', None)
     buttons = []
-    buttons.append([InlineKeyboardButton('back', 
+    buttons.append([InlineKeyboardButton('• ʙᴀᴄᴋ •', 
                       callback_data="settings#get_extension")])
-    await query.message.edit_text(text="**successfully deleted**",
+    await query.message.edit_text(text="**sᴜᴄᴄᴇssꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ✅**",
                                    reply_markup=InlineKeyboardMarkup(buttons))
   elif type == "add_keyword":
     await query.message.delete()
-    ask = await bot.ask(user_id, text="**please send the keywords (seperete by space Like:- English 1080p Hdrip)**")
+    ask = await bot.ask(user_id, text="**ᴘʟᴇᴀsᴇ sᴇɴᴅ ᴛʜᴇ ᴋᴇʏᴡᴏʀᴅs ʟɪᴋᴇ :- (English 1080p Hdrip)**")
     if ask.text == '/cancel':
        return await ask.reply_text(
                   "<b>process canceled</b>",
@@ -447,7 +447,7 @@ async def settings_query(bot, query):
     btn.append([InlineKeyboardButton('🗑️ ʀᴇᴍᴏᴠᴇ ᴀʟʟ 🗑️', 'settings#rmve_all_keyword')])
     btn.append([InlineKeyboardButton('• ʙᴀᴄᴋ •', 'settings#extra')])
     await query.message.edit_text(
-        text=f"<b><u>Keywords</u></b>\n\n**Files with these keywords in file name only forwad**\n\n{text}",
+        text=f"<b><u>Kᴇʏᴡᴏʀᴅs</u></b>ꜰɪʟᴇꜱ ᴡɪᴛʜ ᴛʜᴇsᴇ ᴋᴇʏᴡᴏʀᴅs ɪɴ ꜰɪʟᴇ ɴᴀᴍᴇ ᴏɴʟʏ ᴛᴏ ᴍᴇ ᴀʀᴇ ꜰᴏʀᴡᴀʀᴅᴇᴅ**\n\n{text}",
         reply_markup=InlineKeyboardMarkup(btn))
 
   elif type == "rmve_all_keyword":
@@ -455,7 +455,7 @@ async def settings_query(bot, query):
     buttons = []
     buttons.append([InlineKeyboardButton('back', 
                       callback_data="settings#get_keyword")])
-    await query.message.edit_text(text="**successfully deleted All Keywords**",
+    await query.message.edit_text(text="**sᴜᴄᴄᴇssꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ᴀʟʟ ᴋᴇʏᴡᴏʀᴅs ✅**",
                                    reply_markup=InlineKeyboardMarkup(buttons))
   elif type.startswith("alert"):
     alert = type.split('_')[1]
@@ -630,39 +630,39 @@ async def filters_buttons(user_id):
   filter = await get_configs(user_id)
   filters = filter['filters']
   buttons = [[
-       InlineKeyboardButton('🏷️ Forward tag',
+       InlineKeyboardButton('🏷️ Fᴏʀᴡᴀʀᴅ ᴛᴀɢ',
                     callback_data=f'settings_#updatefilter-forward_tag-{filter["forward_tag"]}'),
        InlineKeyboardButton('✅' if filter['forward_tag'] else '❌',
                     callback_data=f'settings#updatefilter-forward_tag-{filter["forward_tag"]}')
        ],[
-       InlineKeyboardButton('🖍️ Texts',
+       InlineKeyboardButton('🖍️ Tᴇxᴛs',
                     callback_data=f'settings_#updatefilter-text-{filters["text"]}'),
        InlineKeyboardButton('✅' if filters['text'] else '❌',
                     callback_data=f'settings#updatefilter-text-{filters["text"]}')
        ],[
-       InlineKeyboardButton('📁 Documents',
+       InlineKeyboardButton('📁 Dᴏᴄᴜᴍᴇɴᴛs',
                     callback_data=f'settings_#updatefilter-document-{filters["document"]}'),
        InlineKeyboardButton('✅' if filters['document'] else '❌',
                     callback_data=f'settings#updatefilter-document-{filters["document"]}')
        ],[
-       InlineKeyboardButton('🎞️ Videos',
+       InlineKeyboardButton('🎞️ Vɪᴅᴇᴏs',
                     callback_data=f'settings_#updatefilter-video-{filters["video"]}'),
        InlineKeyboardButton('✅' if filters['video'] else '❌',
                     callback_data=f'settings#updatefilter-video-{filters["video"]}')
        ],[
-       InlineKeyboardButton('📷 Photos',
+       InlineKeyboardButton('📷 Pʜᴏᴛᴏs',
                     callback_data=f'settings_#updatefilter-photo-{filters["photo"]}'),
        InlineKeyboardButton('✅' if filters['photo'] else '❌',
                     callback_data=f'settings#updatefilter-photo-{filters["photo"]}')
        ],[
-       InlineKeyboardButton('🎧 Audios',
+       InlineKeyboardButton('🎧 Aᴜᴅɪᴏs',
                     callback_data=f'settings_#updatefilter-audio-{filters["audio"]}'),
        InlineKeyboardButton('✅' if filters['audio'] else '❌',
                     callback_data=f'settings#updatefilter-audio-{filters["audio"]}')
        ],[
-       InlineKeyboardButton('⫷ back',
+       InlineKeyboardButton('⫷ ʙᴀᴄᴋ',
                     callback_data="settings#main"),
-       InlineKeyboardButton('next ⫸',
+       InlineKeyboardButton('ɴᴇxᴛ ⫸',
                     callback_data="settings#nextfilters")
        ]]
   return InlineKeyboardMarkup(buttons) 
@@ -676,39 +676,39 @@ async def next_filters_buttons(user_id):
   filters = filter['filters']
   buttons = [[
        ],[
-       InlineKeyboardButton('🎤 Voices',
+       InlineKeyboardButton('🎤 Vᴏɪᴄᴇs',
                     callback_data=f'settings_#updatefilter-voice-{filters["voice"]}'),
        InlineKeyboardButton('✅' if filters['voice'] else '❌',
                     callback_data=f'settings#updatefilter-voice-{filters["voice"]}')
        ],[
-       InlineKeyboardButton('🎭 Animations',
+       InlineKeyboardButton('🎭 Aɴɪᴍᴀᴛɪᴏɴs',
                     callback_data=f'settings_#updatefilter-animation-{filters["animation"]}'),
        InlineKeyboardButton('✅' if filters['animation'] else '❌',
                     callback_data=f'settings#updatefilter-animation-{filters["animation"]}')
        ],[
-       InlineKeyboardButton('🃏 Stickers',
+       InlineKeyboardButton('🃏 Sᴛɪᴄᴋᴇʀs',
                     callback_data=f'settings_#updatefilter-sticker-{filters["sticker"]}'),
        InlineKeyboardButton('✅' if filters['sticker'] else '❌',
                     callback_data=f'settings#updatefilter-sticker-{filters["sticker"]}')
        ],[
-       InlineKeyboardButton('▶️ Skip duplicate',
+       InlineKeyboardButton('▶️ Sᴋɪᴘ ᴅᴜᴘʟɪᴄᴀᴛᴇ',
                     callback_data=f'settings_#updatefilter-duplicate-{filter["duplicate"]}'),
        InlineKeyboardButton('✅' if filter['duplicate'] else '❌',
                     callback_data=f'settings#updatefilter-duplicate-{filter["duplicate"]}')
        ],[
-       InlineKeyboardButton('📊 Poll',
+       InlineKeyboardButton('📊 Pᴏʟʟ',
                     callback_data=f'settings_#updatefilter-poll-{filters["poll"]}'),
        InlineKeyboardButton('✅' if filters['poll'] else '❌',
                     callback_data=f'settings#updatefilter-poll-{filters["poll"]}')
        ],[
-       InlineKeyboardButton('🔒 Secure message',
+       InlineKeyboardButton('🔒 Sᴇᴄᴜʀᴇ ᴍᴇssᴀɢᴇ',
                     callback_data=f'settings_#updatefilter-protect-{filter["protect"]}'),
        InlineKeyboardButton('✅' if filter['protect'] else '❌',
                     callback_data=f'settings#updatefilter-protect-{filter["protect"]}')
        ],[
-       InlineKeyboardButton('⫷ back', 
+       InlineKeyboardButton('⫷ ʙᴀᴄᴋ', 
                     callback_data="settings#filters"),
-       InlineKeyboardButton('End ⫸',
+       InlineKeyboardButton('ʜᴏᴍᴇ 🏠',
                     callback_data="settings#main")
        ]]
   return InlineKeyboardMarkup(buttons) 
