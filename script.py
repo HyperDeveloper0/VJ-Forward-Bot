@@ -8,9 +8,9 @@ class  Script(object):
 ɪ ᴄᴀɴ ꜰᴏʀᴡᴀʀᴅ ᴀʟʟ ᴍᴇssᴀɢᴇ ꜰʀᴏᴍ ᴏɴᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴀɴᴏᴛʜᴇʀ ᴄʜᴀɴɴᴇʟ</b>
 
 **ᴄʟɪᴄᴋ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ ᴀʙᴏᴜᴛ ᴍᴇ**"""
-  HELP_TXT = """<b><u>🔆 Help</b></u>
+  HELP_TXT = """<b><u>🔆 Hᴇʟᴘ </b></u>
 
-<u>**📚 Available commands:**</u>
+<u>**📚 Aᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs:**</u>
 <b>⏣ __/start - check I'm alive__ 
 ⏣ __/forward - forward messages__
 ⏣ __/settings - configure your settings__
@@ -38,9 +38,9 @@ class  Script(object):
   ABOUT_TXT = """<b>
 ╔════❰ ғᴏʀᴡᴀʀᴅ ʙᴏᴛ ❱═❍⊱❁۪۪
 ║╭━━━━━━━━━━━━━━━➣
-║┣⪼📃ʙᴏᴛ : [Fᴏʀᴡᴀᴅ Bᴏᴛ](https://t.me/VJForwardBot)
-║┣⪼👦Cʀᴇᴀᴛᴏʀ : [Kɪɴɢ VJ 👑](https://t.me/kingvj01)
-║┣⪼🤖Uᴘᴅᴀᴛᴇ : [VJ Bᴏᴛᴢ](https://t.me/vj_botz)
+║┣⪼📃ʙᴏᴛ : [Rᴀᴘɪᴅ ꜰᴏʀᴡᴀʀᴅᴇʀ ⚡](https://t.me/RapidForwarderBot)
+║┣⪼👦Cʀᴇᴀᴛᴏʀ :[Mʀ. ʀᴇᴄᴏɴɪᴄ 👑](https://t.me/MrReconic)
+║┣⪼🤖Uᴘᴅᴀᴛᴇ : [VJ Bᴏᴛᴢ](https://t.me/Reconic_Bots)
 ║┣⪼📡Hᴏsᴛᴇᴅ ᴏɴ : Sᴜᴘᴇʀ Fᴀsᴛ
 ║┣⪼🗣️Lᴀɴɢᴜᴀɢᴇ : Pʏᴛʜᴏɴ3
 ║┣⪼📚Lɪʙʀᴀʀʏ : Pʏʀᴏɢʀᴀᴍ Gᴀᴛʜᴇʀ 2.11.0 
@@ -72,7 +72,7 @@ class  Script(object):
   TEXT = """
 ╔════❰ ғᴏʀᴡᴀʀᴅ sᴛᴀᴛᴜs  ❱═❍⊱❁۪۪
 ║╭━━━━━━━━━━━━━━━➣
-║┣⪼<b>🕵 ғᴇᴄʜᴇᴅ Msɢ :</b> <code>{}</code>
+║┣⪼<b>🕵 ꜰᴇᴄʜᴇᴅ Msɢ :</b> <code>{}</code>
 ║┃
 ║┣⪼<b>✅ sᴜᴄᴄᴇғᴜʟʟʏ Fᴡᴅ :</b> <code>{}</code>
 ║┃
@@ -93,23 +93,23 @@ class  Script(object):
   DUPLICATE_TEXT = """
 ╔════❰ ᴜɴᴇǫᴜɪғʏ sᴛᴀᴛᴜs ❱═❍⊱❁۪۪
 ║╭━━━━━━━━━━━━━━━➣
-║┣⪼ <b>ғᴇᴛᴄʜᴇᴅ ғɪʟᴇs:</b> <code>{}</code>
+║┣⪼ <b>ꜰᴇᴛᴄʜᴇᴅ ғɪʟᴇs:</b> <code>{}</code>
 ║┃
 ║┣⪼ <b>ᴅᴜᴘʟɪᴄᴀᴛᴇ ᴅᴇʟᴇᴛᴇᴅ:</b> <code>{}</code> 
 ║╰━━━━━━━━━━━━━━━➣
 ╚════❰ {} ❱══❍⊱❁۪۪
 """
-  DOUBLE_CHECK = """<b><u>DOUBLE CHECKING ⚠️</b></u>
-<code>Before forwarding the messages Click the Yes button only after checking the following</code>
+  DOUBLE_CHECK = """<b><u>⚠️ Dᴏᴜʙʟᴇ Cʜᴇᴄᴋɪɴɢ ⚠️</b></u>
+<code>ʙᴇꜰᴏʀᴇ ꜰᴏʀᴡᴀʀᴅɪɴɢ ᴛʜᴇ ᴍᴇꜱꜱᴀɢᴇꜱ, ᴄʟɪᴄᴋ ᴛʜᴇ ʏᴇꜱ ʙᴜᴛᴛᴏɴ ᴏɴʟʏ ᴀꜰᴛᴇʀ ᴄʜᴇᴄᴋɪɴɢ ᴛʜᴇ ꜰᴏʟʟᴏᴡɪɴɢ</code>
 
-<b>★ YOUR BOT:</b> [{botname}](t.me/{botuname})
-<b>★ FROM CHANNEL:</b> `{from_chat}`
-<b>★ TO CHANNEL:</b> `{to_chat}`
-<b>★ SKIP MESSAGES:</b> `{skip}`
+<b>★ Yᴏᴜʀ ʙᴏᴛ:</b> [{botname}](t.me/{botuname})
+<b>★ Fʀᴏᴍ ᴄʜᴀɴɴᴇʟ:</b> `{from_chat}`
+<b>★ Tᴏ ᴄʜᴀɴɴᴇʟ:</b> `{to_chat}`
+<b>★ Sᴋɪᴘ ᴍᴇssᴀɢᴇs:</b> `{skip}`
 
-<i>° [{botname}](t.me/{botuname}) must be admin in **TARGET CHAT**</i> (`{to_chat}`)
-<i>° If the **SOURCE CHAT** is private your userbot must be member or your bot must be admin in there also</b></i>
+<i>° [{botname}](t.me/{botuname}) ᴍᴜꜱᴛ ʙᴇ ᴀᴅᴍɪɴ ɪɴ **TARGET CHAT**</i> (`{to_chat}`)
+<i>° If the **SOURCE CHAT** ɪꜱ ᴘʀɪᴠᴀᴛᴇ, ʏᴏᴜʀ ᴜꜱᴇʀʙᴏᴛ ᴍᴜꜱᴛ ʙᴇ ᴀ ᴍᴇᴍʙᴇʀ ᴏʀ ʏᴏᴜʀ ʙᴏᴛ ᴍᴜꜱᴛ ʙᴇ ᴀᴅᴍɪɴ ɪɴ ᴛʜᴇʀᴇ ᴀʟꜱᴏ</b></i>
 
-<b>If the above is checked then the yes button can be clicked</b>"""
+<b>ɪꜰ ᴛʜᴇ ᴀʙᴏᴠᴇ ɪꜱ ᴄʜᴇᴄᴋᴇᴅ, ᴛʜᴇɴ ᴛʜᴇ ʏᴇꜱ ʙᴜᴛᴛᴏɴ ᴄᴀɴ ʙᴇ ᴄʟɪᴄᴋᴇᴅ</b>"""
   
-SETTINGS_TXT = """<b>change your settings as your wish</b>"""
+SETTINGS_TXT = """<b>ᴄʜᴀɴɢᴇ ʏᴏᴜʀ ꜱᴇᴛᴛɪɴɢꜱ ᴀꜱ ʏᴏᴜʀ ᴡɪꜱʜ.</b>"""
