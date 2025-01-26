@@ -31,7 +31,7 @@ async def settings(client, message):
 async def settings_query(bot, query):
   user_id = query.from_user.id
   i, type = query.data.split("#")
-  buttons = [[InlineKeyboardButton('back', callback_data="settings#main")]]
+  buttons = [[InlineKeyboardButton('• ʙᴀᴄᴋ •', callback_data="settings#main")]]
   if type=="main":
      await query.message.edit_text(
        "<b>Hᴇʀᴇ Is Tʜᴇ Sᴇᴛᴛɪɴɢs Pᴀɴᴇʟ⚙\n\nᴄʜᴀɴɢᴇ ʏᴏᴜʀ sᴇᴛᴛɪɴɢs ᴀs ʏᴏᴜʀ ᴡɪsʜ 👇</b>",
@@ -56,7 +56,7 @@ async def settings_query(bot, query):
      else:
         buttons.append([InlineKeyboardButton('✚ ᴀᴅᴅ ᴜsᴇʀ ʙᴏᴛ ✚', 
                          callback_data="settings#adduserbot")])
-     buttons.append([InlineKeyboardButton('back', 
+     buttons.append([InlineKeyboardButton('• ʙᴀᴄᴋ •', 
                       callback_data="settings#main")])
      await query.message.edit_text(
        "<b><u>My Bots</b></u>\n\n<b>ʏᴏᴜ ᴄᴀɴ ᴍᴀɴᴀɢᴇ ʏᴏᴜʀ ʙᴏᴛs ɪɴ ʜᴇʀᴇ</b>",
@@ -86,7 +86,7 @@ async def settings_query(bot, query):
                          callback_data=f"settings#editchannels_{channel['chat_id']}")])
      buttons.append([InlineKeyboardButton('✚ ᴀᴅᴅ ᴄʜᴀɴɴᴇʟ ✚', 
                       callback_data="settings#addchannel")])
-     buttons.append([InlineKeyboardButton('back', 
+     buttons.append([InlineKeyboardButton('• ʙᴀᴄᴋ •', 
                       callback_data="settings#main")])
      await query.message.edit_text( 
        "<b><u>Mʏ Cʜᴀɴɴᴇʟs</b></u>\n\n<b>ʏᴏᴜ ᴄᴀɴ ᴍᴀɴᴀɢᴇ ʏᴏᴜʀ ᴛᴀʀɢᴇᴛ ᴄʜᴀᴛꜱ ɪɴ ʜᴇʀᴇ</b>",
@@ -148,7 +148,7 @@ async def settings_query(bot, query):
      chat = await db.get_channel_details(user_id, chat_id)
      buttons = [[InlineKeyboardButton('❌ ʀᴇᴍᴏᴠᴇ ❌', callback_data=f"settings#removechannel_{chat_id}")
                ],
-               [InlineKeyboardButton('back', callback_data="settings#channels")]]
+               [InlineKeyboardButton('• ʙᴀᴄᴋ •', callback_data="settings#channels")]]
      await query.message.edit_text(
         f"<b><u>📄 Cʜᴀɴɴᴇʟ Dᴇᴛᴀɪʟs</b></u>\n\n<b>- Tɪᴛʟᴇ:</b> <code>{chat['title']}</code>\n<b>- Cʜᴀɴɴᴇʟ ID: </b> <code>{chat['chat_id']}</code>\n<b>- Usᴇʀɴᴀᴍᴇ :</b> {chat['username']}",
         reply_markup=InlineKeyboardMarkup(buttons))
@@ -172,10 +172,10 @@ async def settings_query(bot, query):
                       callback_data="settings#seecaption")])
         buttons[-1].append(InlineKeyboardButton('🗑️ ᴅᴇʟᴇᴛᴇ ᴄᴀᴘᴛɪᴏɴ 🗑️', 
                       callback_data="settings#deletecaption"))
-     buttons.append([InlineKeyboardButton('back', 
+     buttons.append([InlineKeyboardButton('• ʙᴀᴄᴋ •', 
                       callback_data="settings#main")])
      await query.message.edit_text(
-        "<b><u>Cᴜsᴛᴏᴍ Cᴀᴘᴛɪᴏɴ</b></u>\n\n<b>ʏᴏᴜ ᴄᴀɴ sᴇᴛ ᴀ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ ᴛᴏ ᴠɪᴅᴇᴏꜱ ᴀɴᴅ ᴅᴏᴄᴜᴍᴇɴᴛs. ɴᴏʀᴍᴀʟʟʏ ᴜꜱᴇ ɪᴛꜱ ᴅᴇꜰᴀᴜʟᴛ ᴄᴀᴘᴛɪᴏɴ.</b>\n\n<b><u>Aᴠᴀɪʟᴀʙʟᴇ Fɪʟʟɪɴɢs:</b></u>\n- <code>{filename}</code> : Filename\n- <code>{size}</code> : File size\n- <code>{caption}</code> : default caption",
+        "<b><u>Cᴜsᴛᴏᴍ Cᴀᴘᴛɪᴏɴ</b></u>\n\n<b>ʏᴏᴜ ᴄᴀɴ sᴇᴛ ᴀ ᴄᴜsᴛᴏᴍ ᴄᴀᴘᴛɪᴏɴ ᴛᴏ ᴠɪᴅᴇᴏꜱ ᴀɴᴅ ᴅᴏᴄᴜᴍᴇɴᴛs. ɴᴏʀᴍᴀʟʟʏ ᴜꜱᴇ ɪᴛꜱ ᴅᴇꜰᴀᴜʟᴛ ᴄᴀᴘᴛɪᴏɴ.</b>\n\n<b><u>Aᴠᴀɪʟᴀʙʟᴇ Fɪʟʟɪɴɢs:</b></u>\n- <code>{filename}</code> : Fɪʟᴇ ɴᴀᴍᴇ \n- <code>{size}</code> : Fɪʟᴇ sɪᴢᴇ\n- <code>{caption}</code> : Dᴇꜰᴀᴜʟᴛ ᴄᴀᴘᴛɪᴏɴ",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="seecaption":   
@@ -183,7 +183,7 @@ async def settings_query(bot, query):
      buttons = [[InlineKeyboardButton('🖋️ Eᴅɪᴛ ᴄᴀᴘᴛɪᴏɴ', 
                   callback_data="settings#addcaption")
                ],[
-               InlineKeyboardButton('back', 
+               InlineKeyboardButton('• ʙᴀᴄᴋ •', 
                  callback_data="settings#caption")]]
      await query.message.edit_text(
         f"<b><u>Yᴏᴜʀ Cᴜsᴛᴏᴍ Cᴀᴘᴛɪᴏɴ</b></u>\n\n<code>{data['caption']}</code>",
@@ -224,7 +224,7 @@ async def settings_query(bot, query):
                       callback_data="settings#seebutton")])
         buttons[-1].append(InlineKeyboardButton('🗑️ ʀᴇᴍᴏᴠᴇ ʙᴜᴛᴛᴏɴ 🗑️', 
                       callback_data="settings#deletebutton"))
-     buttons.append([InlineKeyboardButton('back', 
+     buttons.append([InlineKeyboardButton('• ʙᴀᴄᴋ •', 
                       callback_data="settings#main")])
      await query.message.edit_text(
         "<b><u>CUSTOM BUTTON</b></u>\n\n<b>ʏᴏᴜ ᴄᴀɴ sᴇᴛ ᴀɴ ɪɴʟɪɴᴇ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴍᴇꜱꜱᴀɢᴇꜱ.</b>\n\n<b><u>FORMAT:</b></u>\n`[Forward bot][buttonurl:https://t.me/mychannelurl]`\n",
@@ -265,7 +265,7 @@ async def settings_query(bot, query):
                       callback_data="settings#seeurl")])
         buttons[-1].append(InlineKeyboardButton('❌ ʀᴇᴍᴏᴠᴇ ᴜʀʟ ❌', 
                       callback_data="settings#deleteurl"))
-     buttons.append([InlineKeyboardButton('back', 
+     buttons.append([InlineKeyboardButton('• ʙᴀᴄᴋ •', 
                       callback_data="settings#main")])
      await query.message.edit_text(
         "<b><u>Dᴀᴛᴀʙsᴇ</u>\n\nᴅᴀᴛᴀʙᴀꜱᴇ ɪꜱ ʀᴇǫᴜɪʀᴇᴅ ꜰᴏʀ ꜱᴛᴏʀɪɴɢ ʏᴏᴜʀ ᴅᴜᴘʟɪᴄᴀᴛᴇ ᴍᴇꜱꜱᴀɢᴇꜱ ᴘᴇʀᴍᴀɴᴇɴᴛʟʏ. ᴏᴛʜᴇʀᴡɪꜱᴇ, ꜱᴛᴏʀᴇᴅ ᴅᴜᴘʟɪᴄᴀᴛᴇ ᴍᴇᴅɪᴀ ᴍᴀʏ ᴅɪꜱᴀᴘᴘᴇᴀʀ ᴀꜰᴛᴇʀ ᴀ ʙᴏᴛ ʀᴇꜱᴛᴀʀᴛ.</b>",
@@ -289,7 +289,7 @@ async def settings_query(bot, query):
         return await uri.reply("<b>⚠️ Iɴᴠᴀʟɪᴅ MᴏɴɢᴏDB ᴜʀʟ, ᴄᴀɴ'ᴛ ᴄᴏɴɴᴇᴄᴛ ᴡɪᴛʜ ᴛʜɪs ᴜʀʟ ⚠️</b>",
                   reply_markup=InlineKeyboardMarkup(buttons))
      await update_configs(user_id, 'db_uri', uri.text)
-     await uri.reply("**Successfully database url added**",
+     await uri.reply("**sᴜᴄᴄᴇssꜰᴜʟʟʏ ᴅᴀᴛᴀʙᴀsᴇ ᴜʀʟ ᴀᴅᴅᴇᴅ ✅**",
              reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="seeurl":
@@ -299,12 +299,12 @@ async def settings_query(bot, query):
   elif type=="deleteurl":
      await update_configs(user_id, 'db_uri', None)
      await query.message.edit_text(
-        "**Successfully your database url deleted**",
+        "**sᴜᴄᴄᴇssꜰᴜʟʟʏ ᴅᴀᴛᴀʙᴀsᴇ ᴜʀʟ ᴅᴇʟᴇᴛᴇᴅ ✅**",
         reply_markup=InlineKeyboardMarkup(buttons))
 
   elif type=="filters":
      await query.message.edit_text(
-        "<b><u>💠 ᴄᴜsᴛᴏᴍ ꜰɪʟᴛᴇʀs 💠</b></u>\n\n**ᴄᴏɴꜰɪɢᴜʀᴇ ᴛʜᴇ ᴛʏᴘᴇ ᴏꜰ ᴍᴇꜱꜱᴀɢᴇꜱ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ꜰᴏʀᴡᴀʀᴅ**",
+        "<b><u>💠 Cᴜsᴛᴏᴍ Fɪʟᴛᴇʀs 💠</b></u>\n\n**ᴄᴏɴꜰɪɢᴜʀᴇ ᴛʜᴇ ᴛʏᴘᴇ ᴏꜰ ᴍᴇꜱꜱᴀɢᴇꜱ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ꜰᴏʀᴡᴀʀᴅ**",
         reply_markup=await filters_buttons(user_id))
 
   elif type=="nextfilters":
@@ -381,7 +381,7 @@ async def settings_query(bot, query):
         extension = extensions
     await update_configs(user_id, 'extension', extension)
     buttons = []
-    buttons.append([InlineKeyboardButton('back', 
+    buttons.append([InlineKeyboardButton('• ʙᴀᴄᴋ •', 
                       callback_data="settings#get_extension")])
     await ext.reply_text(
         f"**successfully updated**",
@@ -427,7 +427,7 @@ async def settings_query(bot, query):
         keyword = keywords
     await update_configs(user_id, 'keywords', keyword)
     buttons = []
-    buttons.append([InlineKeyboardButton('back', 
+    buttons.append([InlineKeyboardButton('• ʙᴀᴄᴋ •', 
                       callback_data="settings#get_keyword")])
     await ask.reply_text(
         f"**successfully updated**",
@@ -453,7 +453,7 @@ async def settings_query(bot, query):
   elif type == "rmve_all_keyword":
     await update_configs(user_id, 'keywords', None)
     buttons = []
-    buttons.append([InlineKeyboardButton('back', 
+    buttons.append([InlineKeyboardButton('• ʙᴀᴄᴋ •', 
                       callback_data="settings#get_keyword")])
     await query.message.edit_text(text="**sᴜᴄᴄᴇssꜰᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ᴀʟʟ ᴋᴇʏᴡᴏʀᴅs ✅**",
                                    reply_markup=InlineKeyboardMarkup(buttons))
@@ -578,7 +578,7 @@ def maxsize_button(size):
        InlineKeyboardButton('-100',
                     callback_data=f'settings#maxupdate_size_-{size - 100}')
        ],[
-       InlineKeyboardButton('back',
+       InlineKeyboardButton('• ʙᴀᴄᴋ •',
                     callback_data="settings#extra")
      ]]
   return InlineKeyboardMarkup(buttons)
@@ -617,7 +617,7 @@ def size_button(size):
        InlineKeyboardButton('-100',
                     callback_data=f'settings#update_size_-{size - 100}')
        ],[
-       InlineKeyboardButton('back',
+       InlineKeyboardButton('• ʙᴀᴄᴋ •',
                     callback_data="settings#extra")
      ]]
   return InlineKeyboardMarkup(buttons)
