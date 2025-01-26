@@ -258,7 +258,7 @@ async def settings_query(bot, query):
      buttons = []
      db_uri = (await get_configs(user_id))['db_uri']
      if db_uri is None:
-        buttons.append([InlineKeyboardButton('✚ ᴀᴅᴅ ᴍᴏɴɢᴏ ᴅʙ ᴜʀʟ ✚'), 
+        buttons.append([InlineKeyboardButton('✚ ᴀᴅᴅ ᴍᴏɴɢᴏ ᴅʙ ᴜʀʟ ✚', 
                       callback_data="settings#addurl")])
      else:
         buttons.append([InlineKeyboardButton('👀 sᴇᴇ ᴜʀʟ', 
@@ -279,7 +279,7 @@ async def settings_query(bot, query):
                   "<b>process canceled !</b>",
                   reply_markup=InlineKeyboardMarkup(buttons))
      if not uri.text.startswith("mongodb+srv://") and not uri.text.endswith("majority"):
-        return await uri.reply("<b>Invalid Mongodb Url</b>",
+        return await uri.reply("<b>⚠️ Iɴᴠᴀʟɪᴅ MᴏɴɢᴏDB Uʀʟ ⚠️</b>",
                    reply_markup=InlineKeyboardMarkup(buttons))
      connect, udb = await connect_user_db(user_id, uri.text, "test")
      if connect:
