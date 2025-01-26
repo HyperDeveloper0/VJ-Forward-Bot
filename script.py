@@ -18,8 +18,8 @@ class  Script(object):
 ⏣ __ /stop - stop your ongoing tasks__
 ⏣ __ /reset - reset your settings__</b>
 
-<b><u>💢 Features:</b></u>
-<b>► __Forward message from public channel to your channel without admin permission. if the channel is private need admin permission, if you can't give admin permission then use userbot, but in userbot there is a chance to get your account ban so use fake account__
+<b><u>💢 Fᴇᴀᴛᴜʀᴇs:</b></u>
+<b>► __ꜰᴏʀᴡᴀʀᴅ ᴍᴇssᴀɢᴇ ꜰʀᴏᴍ ᴘᴜʙʟɪᴄ ᴄʜᴀᴧɴɴᴇʟ ᴛᴏ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴡɪᴛʜᴏᴜᴛ ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴ. ɪꜰ ᴛʜᴇ ᴄʜᴀᴧɴɴᴇʟ ɪs ᴘʀɪᴠᴀᴛᴇ, ɴᴇᴇᴅ ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴ. ɪꜰ ʏᴏᴜ ᴄᴀɴ'ᴛ ɢɪᴠᴇ ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴ, ᴛʜᴇɴ ᴜsᴇ ᴜsᴇʀʙᴏᴛ, ʙᴜᴛ ɪɴ ᴜsᴇʀʙᴏᴛ ᴛʜᴇʀᴇ ɪs ᴀ ᴄʜᴀɴᴄᴇ ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ ᴀᴄᴄᴏᴜɴᴛ ʙᴀɴ ᴛʜᴇʀᴇғᴏʀᴇ ᴜsᴇ ꜰᴀᴋᴇ ᴀᴄᴄᴏᴜɴᴛ__
 ► __custom caption__
 ► __custom button__
 ► __skip duplicate messages__
@@ -36,22 +36,22 @@ class  Script(object):
 ► ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍᴇ [ᴛᴜᴛᴏʀɪᴀʟ ᴠɪᴅᴇᴏ](https://youtu.be/wO1FE-lf35I)</b>"""
   
   ABOUT_TXT = """<b>
-╔════❰ ғᴏʀᴡᴀʀᴅ ʙᴏᴛ ❱═❍⊱❁۪۪
+╔════❰ ʀᴀᴘɪᴅ ꜰᴏʀᴡᴀʀᴅᴇʀ ❱═❍⊱❁۪۪
 ║╭━━━━━━━━━━━━━━━➣
 ║┣⪼📃ʙᴏᴛ : [Rᴀᴘɪᴅ ꜰᴏʀᴡᴀʀᴅᴇʀ ⚡](https://t.me/RapidForwarderBot)
-║┣⪼👦Cʀᴇᴀᴛᴏʀ :[Mʀ. ʀᴇᴄᴏɴɪᴄ 👑](https://t.me/MrReconic)
-║┣⪼🤖Uᴘᴅᴀᴛᴇ : [VJ Bᴏᴛᴢ](https://t.me/Reconic_Bots)
-║┣⪼📡Hᴏsᴛᴇᴅ ᴏɴ : Sᴜᴘᴇʀ Fᴀsᴛ
-║┣⪼🗣️Lᴀɴɢᴜᴀɢᴇ : Pʏᴛʜᴏɴ3
-║┣⪼📚Lɪʙʀᴀʀʏ : Pʏʀᴏɢʀᴀᴍ Gᴀᴛʜᴇʀ 2.11.0 
-║┣⪼🗒️Vᴇʀsɪᴏɴ : 0.18.3
+║┣⪼👨‍💻 Cʀᴇᴀᴛᴏʀ :[Mʀ. ʀᴇᴄᴏɴɪᴄ 👑](https://t.me/MrReconic)
+║┣⪼🤖 ʙᴇʟᴏɴɢs ғʀᴏᴍ: [Rᴇᴄᴏɴɪᴄ ʙᴏᴛs ](https://t.me/Reconic_Bots)
+║┣⪼📡 Hᴏsᴛᴇᴅ ᴏɴ : Sᴜᴘᴇʀ Fᴀsᴛ
+║┣⪼🗣️ Lᴀɴɢᴜᴀɢᴇ : Pʏᴛʜᴏɴ3
+║┣⪼📚 Lɪʙʀᴀʀʏ : Pʏʀᴏɢʀᴀᴍ Gᴀᴛʜᴇʀ 2.11.0 
+║┣⪼🗒️ Vᴇʀsɪᴏɴ : 0.18.3
 ║╰━━━━━━━━━━━━━━━➣
 ╚══════════════════❍⊱❁۪۪
 </b>"""
   STATUS_TXT = """
 ╔════❰ ʙᴏᴛ sᴛᴀᴛᴜs  ❱═❍⊱❁۪۪
 ║╭━━━━━━━━━━━━━━━➣
-║┣⪼**⏳ ʙᴏᴛ ᴜᴘᴛɪᴍᴇ:**`{}`
+║┣⪼**⏳ Bᴏᴛ ᴜᴘᴛɪᴍᴇ:**`{}`
 ║┃
 ║┣⪼**👱 Tᴏᴛᴀʟ Usᴇʀs:** `{}`
 ║┃
@@ -70,21 +70,21 @@ class  Script(object):
   USER_DETAILS = "<b><u>📄 USERBOT DETAILS</b></u>\n\n<b>➣ NAME:</b> <code>{}</code>\n<b>➣ USER ID:</b> <code>{}</code>\n<b>➣ USERNAME:</b> @{}"  
          
   TEXT = """
-╔════❰ ғᴏʀᴡᴀʀᴅ sᴛᴀᴛᴜs  ❱═❍⊱❁۪۪
+╔════❰ ꜰᴏʀᴡᴀʀᴅ sᴛᴀᴛᴜs  ❱═❍⊱❁۪۪
 ║╭━━━━━━━━━━━━━━━➣
-║┣⪼<b>🕵 ꜰᴇᴄʜᴇᴅ Msɢ :</b> <code>{}</code>
+║┣⪼<b>🕵 Fᴇᴄʜᴇᴅ ᴍsɢ :</b> <code>{}</code>
 ║┃
-║┣⪼<b>✅ sᴜᴄᴄᴇғᴜʟʟʏ Fᴡᴅ :</b> <code>{}</code>
+║┣⪼<b>✅ Sᴜᴄᴄᴇꜰᴜʟʟʏ ꜰᴡᴅ :</b> <code>{}</code>
 ║┃
-║┣⪼<b>👥 ᴅᴜᴘʟɪᴄᴀᴛᴇ Msɢ :</b> <code>{}</code>
+║┣⪼<b>👥 Dᴜᴘʟɪᴄᴀᴛᴇ ᴍsɢ :</b> <code>{}</code>
 ║┃
-║┣⪼<b>🗑 ᴅᴇʟᴇᴛᴇᴅ Msɢ :</b> <code>{}</code>
+║┣⪼<b>🗑 Dʟᴇᴛᴇᴅ ᴍsɢ :</b> <code>{}</code>
 ║┃
-║┣⪼<b>🪆 Sᴋɪᴘᴘᴇᴅ Msɢ :</b> <code>{}</code>
+║┣⪼<b>🪆 Sᴋɪᴘᴘᴇᴅ ᴍsɢ :</b> <code>{}</code>
 ║┃
-║┣⪼<b>🔁 Fɪʟᴛᴇʀᴇᴅ Msɢ :</b> <code>{}</code>
+║┣⪼<b>🔁 Fɪʟᴛᴇʀᴇᴅ ᴍsɢ :</b> <code>{}</code>
 ║┃
-║┣⪼<b>📊 Cᴜʀʀᴇɴᴛ Sᴛᴀᴛᴜs:</b> <code>{}</code>
+║┣⪼<b>📊 Cᴜʀʀᴇɴᴛ sᴛᴀᴛᴜs:</b> <code>{}</code>
 ║┃
 ║┣⪼<b>𖨠 Pᴇʀᴄᴇɴᴛᴀɢᴇ:</b> <code>{}</code> %
 ║╰━━━━━━━━━━━━━━━➣ 
