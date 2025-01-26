@@ -84,7 +84,7 @@ async def helpcb(bot, query):
 
 @Client.on_callback_query(filters.regex(r'^how_to_use'))
 async def how_to_use(bot, query):
-    buttons = [[InlineKeyboardButton('• back', callback_data='help')]]
+    buttons = [[InlineKeyboardButton('• ʙᴀᴄᴋ •', callback_data='help')]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await query.message.edit_text(
         text=Script.HOW_USE_TXT,
@@ -110,8 +110,8 @@ async def back(bot, query):
 @Client.on_callback_query(filters.regex(r'^about'))
 async def about(bot, query):
     buttons = [[
-         InlineKeyboardButton('• back', callback_data='help'),
-         InlineKeyboardButton('Stats ✨️', callback_data='status')
+         InlineKeyboardButton('• ʙᴀᴄᴋ •', callback_data='help'),
+         InlineKeyboardButton('Sᴛᴀᴛs ✨️', callback_data='status')
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await query.message.edit_text(
@@ -130,8 +130,8 @@ async def status(bot, query):
     forwardings = await db.forwad_count()
     upt = await get_bot_uptime(START_TIME)
     buttons = [[
-        InlineKeyboardButton('• back', callback_data='help'),
-        InlineKeyboardButton('System Stats ✨️', callback_data='systm_sts'),
+        InlineKeyboardButton('• ʙᴀᴄᴋ •', callback_data='help'),
+        InlineKeyboardButton('Sʏsᴛᴇᴍ sᴛᴀᴛs ✨️', callback_data='systm_sts'),
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await query.message.edit_text(
@@ -146,7 +146,7 @@ async def status(bot, query):
 
 @Client.on_callback_query(filters.regex(r'^systm_sts'))
 async def sys_status(bot, query):
-    buttons = [[InlineKeyboardButton('• back', callback_data='help')]]
+    buttons = [[InlineKeyboardButton('• ʙᴀᴄᴋ •', callback_data='help')]]
     ram = psutil.virtual_memory().percent
     cpu = psutil.cpu_percent()
     disk_usage = psutil.disk_usage('/')
