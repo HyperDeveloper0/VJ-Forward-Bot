@@ -21,10 +21,10 @@ START_TIME = time.time()
 # Ask Doubt on telegram @KingVJ01
 
 main_buttons = [[
-    InlineKeyboardButton('❣️ ᴅᴇᴠᴇʟᴏᴘᴇʀ ❣️', url='https://t.me/kingvj01')
+    InlineKeyboardButton('❣️ ᴅᴇᴠᴇʟᴏᴘᴇʀ ❣️', url='https://t.me/MrReconic')
 ],[
     InlineKeyboardButton('🔍 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url='https://t.me/vj_bot_disscussion'),
-    InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/vj_botz')
+    InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/Reconic_Bots')
 ],[
     InlineKeyboardButton('💝 sᴜʙsᴄʀɪʙᴇ ᴍʏ ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ', url='https://youtube.com/@Tech_VJ')
 ],[
@@ -73,7 +73,7 @@ async def helpcb(bot, query):
         InlineKeyboardButton('Aʙᴏᴜᴛ ✨️', callback_data='about'),
         InlineKeyboardButton('⚙ Sᴇᴛᴛɪɴɢs', callback_data='settings#main')
     ],[
-        InlineKeyboardButton('• back', callback_data='back')
+        InlineKeyboardButton('• ʙᴀᴄᴋ •', callback_data='back')
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     await query.message.edit_text(text=Script.HELP_TXT, reply_markup=reply_markup)
