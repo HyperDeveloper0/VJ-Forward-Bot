@@ -14,6 +14,8 @@ import psutil
 import time as time
 from os import environ, execle, system
 
+from utils import verify_user, check_token, check_verification, get_token
+
 START_TIME = time.time()
 
 # Don't Remove Credit Tg - @VJ_Botz
@@ -40,6 +42,21 @@ main_buttons = [[
 
 @Client.on_message(filters.private & filters.command(['start']))
 async def start(client, message):
+
+if not await check_verification(client, message.from_user.id) and VERIFY == True:
+        btn = [[
+            InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{BOT_USERNAME}?start="))
+        ],[
+            InlineKeyboardButton("How To Open Link & Verify", url=VERIFY_TUTORIAL)
+        ]]
+        await message.reply_text(
+            text="<b>You are not verified !\nKindly verify to continue !</b>",
+            protect_content=True,
+            reply_markup=InlineKeyboardMarkup(btn)
+        )
+        return
+
+
     user = message.from_user
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
@@ -53,7 +70,30 @@ async def start(client, message):
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
-@Client.on_message(filters.private & filters.command(['restart']) & filters.user(Config.BOT_OWNER))
+data = message.command[1]
+    if data.split("-", 1)[0] == "verify": # set if or elif it depend on your code
+        userid = data.split("-", 2)[1]
+        token = data.split("-", 3)[2]
+        if str(message.from_user.id) != str(userid):
+            return await message.reply_text(
+                text="<b>Invalid link or Expired link !</b>",
+                protect_content=True
+            )
+        is_valid = await check_token(client, userid, token)
+        if is_valid == True:
+            await message.reply_text(
+                text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all files till today midnight.</b>",
+                protect_content=True
+            )
+            await verify_user(client, userid, token)
+        else:
+            return await message.reply_text(
+                text="<b>Invalid link or Expired link !</b>",
+                protect_content=True
+            )
+
+
+@Client.on_message(filters.private & filters.command(['restart']) & filters.user(Config.BOT_OWNER, VERIFY, VERIFY_TUTORIAL, BOT_USERNAME))
 async def restart(client, message):
     msg = await message.reply_text(text="<i>Trying to restarting.....</i>")
     await asyncio.sleep(5)
