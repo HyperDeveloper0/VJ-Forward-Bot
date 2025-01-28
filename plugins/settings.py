@@ -168,7 +168,7 @@ async def settings_query(bot, query):
         buttons.append([InlineKeyboardButton('✚ ᴀᴅᴅ ᴄᴀᴘᴛɪᴏɴ ✚', 
                       callback_data="settings#addcaption")])
      else:
-        buttons.append([InlineKeyboardButton('See Caption', 
+        buttons.append([InlineKeyboardButton('👀 sᴇᴇ ᴄᴀᴘᴛɪᴏɴ 👀', 
                       callback_data="settings#seecaption")])
         buttons[-1].append(InlineKeyboardButton('🗑️ ᴅᴇʟᴇᴛᴇ ᴄᴀᴘᴛɪᴏɴ 🗑️', 
                       callback_data="settings#deletecaption"))
