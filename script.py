@@ -34,7 +34,7 @@ class  Script(object):
 ► __if the **From Channel** is private your userbot must be member in there or your bot must need admin permission in there also__
 ► __Then use /forward to forward messages__
 
-► ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍᴇ [ᴛᴜᴛᴏʀɪᴀʟ ᴠɪᴅᴇᴏ](https://t.me/@MrReconic)</b>"""
+► ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍᴇ [ᴛᴜᴛᴏʀɪᴀʟ ᴠɪᴅᴇᴏ](https://filestream-a294f52d94d4.herokuapp.com//stream/142541?code=f1a0bb2d421e291ad81984aa)</b>"""
   
   ABOUT_TXT = """<b>
 ╔════❰ ʀᴀᴘɪᴅ ꜰᴏʀᴡᴀʀᴅᴇʀ ❱═❍⊱❁۪۪
