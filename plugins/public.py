@@ -20,7 +20,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQ
 
 @Client.on_message(filters.private & filters.command(["forward"]))
 async def run(bot, message):
-    buttons = []
+    buttons =[]
     btn_data = {}
     user_id = message.from_user.id
     _bot = await db.get_bot(user_id)
@@ -50,8 +50,13 @@ async def run(bot, message):
     if fromid.text and fromid.text.startswith('/'):
         await message.reply(Script.CANCEL)
         return 
-    if fromid.text and not fromid.forward_date:
-        regex = re.compile("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")
+        
+    is_forward = False
+    if getattr(fromid, "forward_origin", None) or getattr(fromid, "forward_date", None):
+        is_forward = True
+
+    if fromid.text and not is_forward:
+        regex = re.compile(r"(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")
         match = regex.match(fromid.text.replace("?single", ""))
         if not match:
             return await message.reply('Invalid link')
@@ -59,24 +64,51 @@ async def run(bot, message):
         last_msg_id = int(match.group(5))
         if chat_id.isnumeric():
             chat_id  = int(("-100" + chat_id))
-    elif fromid.forward_from_chat.type in [enums.ChatType.CHANNEL, 'supergroup']:
+    elif getattr(fromid, "forward_origin", None):
+        origin = fromid.forward_origin
+        if origin.type == enums.MessageOriginType.CHANNEL:
+            last_msg_id = getattr(origin, "message_id", None)
+            chat_id = origin.chat.username or origin.chat.id
+        elif origin.type == enums.MessageOriginType.CHAT:
+            last_msg_id = None
+            chat_id = origin.sender_chat.username or origin.sender_chat.id
+        else:
+            return await message.reply_text("**invalid !**")
+            
+        if last_msg_id is None:
+           return await message.reply_text("**This may be a forwarded message from a group and sended by anonymous admin. instead of this please send last message link from group**")
+    elif getattr(fromid, "forward_from_chat", None) and fromid.forward_from_chat.type in[enums.ChatType.CHANNEL, enums.ChatType.SUPERGROUP, 'supergroup']:
         last_msg_id = fromid.forward_from_message_id
         chat_id = fromid.forward_from_chat.username or fromid.forward_from_chat.id
-        if last_msg_id == None:
+        if last_msg_id is None:
            return await message.reply_text("**This may be a forwarded message from a group and sended by anonymous admin. instead of this please send last message link from group**")
     else:
         await message.reply_text("**invalid !**")
         return 
+        
     try:
         title = (await bot.get_chat(chat_id)).title
   #  except ChannelInvalid:
         #return await fromid.reply("**Given source chat is copyrighted channel/group. you can't forward messages from there**")
     except (PrivateChat, ChannelPrivate, ChannelInvalid):
-        title = "private" if fromid.text else fromid.forward_from_chat.title
+        if fromid.text and not is_forward:
+            title = "private"
+        else:
+            if getattr(fromid, "forward_origin", None):
+                origin = fromid.forward_origin
+                if origin.type == enums.MessageOriginType.CHANNEL:
+                    title = origin.chat.title or "private"
+                elif origin.type == enums.MessageOriginType.CHAT:
+                    title = origin.sender_chat.title or "private"
+                else:
+                    title = "private"
+            else:
+                title = fromid.forward_from_chat.title if getattr(fromid, "forward_from_chat", None) else "private"
     except (UsernameInvalid, UsernameNotModified):
         return await message.reply('Invalid Link specified.')
     except Exception as e:
         return await message.reply(f'Errors - {e}')
+        
     skipno = await bot.ask(message.chat.id, Script.SKIP_MSG)
     if skipno.text.startswith('/'):
         await message.reply(Script.CANCEL)
