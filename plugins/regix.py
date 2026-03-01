@@ -697,4 +697,86 @@ async def store_vars(user_id):
 async def restart_forwards(client):
     users = await db.get_all_frwd()
     count = await db.forwad_count()
-    tasks =
+    tasks = []
+    async for user in users:
+        tasks.append(restart_pending_forwads(client, user))
+    random_seconds = random.randint(0, 300)
+    minutes = random_seconds // 60
+    seconds = random_seconds % 60
+    await asyncio.gather(*tasks)
+    print('Done')
+
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
+
+async def update_forward(user_id, chat_id, start_time, toid, last_id, limit, forward_id, msg_id, fetched, total, duplicate, deleted, skip, filterd):
+    details = {
+        'chat_id': chat_id,
+        'toid': toid,
+        'forward_id': forward_id,
+        'last_id': last_id,
+        'limit': limit,
+        'msg_id': msg_id,
+        'start_time': start_time,
+        'fetched': fetched,
+        'offset': fetched,
+        'deleted': deleted,
+        'total': total,
+        'duplicate': duplicate,
+        'skip': skip,
+        'filtered':filterd
+    }
+    await db.update_forward(user_id, details)
+
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
+
+async def get_bot_uptime(start_time):
+    # Calculate the uptime in seconds
+    uptime_seconds = int(time.time() - start_time)
+    uptime_minutes = uptime_seconds // 60
+    uptime_hours = uptime_minutes // 60
+    uptime_days = uptime_hours // 24
+    uptime_weeks = uptime_days // 7
+    uptime_string = ""
+    if uptime_weeks != 0:
+        uptime_string += f"{uptime_weeks % 7}w, "
+    if uptime_days != 0:
+        uptime_string += f"{uptime_days % 24}d, "
+    if uptime_hours != 0:
+        uptime_string += f"{uptime_hours % 24}h, "
+    if uptime_minutes != 0:
+        uptime_string += f"{uptime_minutes % 60}m, "
+    uptime_string += f"{uptime_seconds % 60}s"
+    return uptime_string  
+
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
+
+async def complete_time(total_files, files_per_minute=30):
+    minutes_required = total_files / files_per_minute
+    seconds_required = minutes_required * 60
+    weeks = seconds_required // (7 * 24 * 60 * 60)
+    days = (seconds_required % (7 * 24 * 60 * 60)) // (24 * 60 * 60)
+    hours = (seconds_required % (24 * 60 * 60)) // (60 * 60)
+    minutes = (seconds_required % (60 * 60)) // 60
+    seconds = seconds_required % 60
+    time_format = ""
+    if weeks > 0:
+        time_format += f"{int(weeks)}w, "
+    if days > 0:
+        time_format += f"{int(days)}d, "
+    if hours > 0:
+        time_format += f"{int(hours)}h, "
+    if minutes > 0:
+        time_format += f"{int(minutes)}m, "
+    if seconds > 0:
+        time_format += f"{int(seconds)}s"
+    return time_format
+
+# Don't Remove Credit Tg - @VJ_Botz
+# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
+# Ask Doubt on telegram @KingVJ01
