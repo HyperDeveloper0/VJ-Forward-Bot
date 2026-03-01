@@ -108,10 +108,10 @@ async def pub_(bot, message):
     await msg_edit(m, "<code>processing...</code>") 
     temp.IS_FRWD_CHAT.append(i.TO)
     temp.lock[user] = locked = True
-    dup_files = []
+    dup_files =[]
     if locked:
         try:
-          MSG = []
+          MSG =[]
           pling=0
           await edit(user, m, 'ᴘʀᴏɢʀᴇssɪɴɢ', 5, sts)
           async for message in iter_messages(client, chat_id=sts.get("FROM"), limit=sts.get("limit"), offset=sts.get("skip"), filters=filter, max_size=max_size):
@@ -158,7 +158,7 @@ async def pub_(bot, message):
                       await forward(user, client, MSG, m, sts, protect)
                       sts.add('total_files', notcompleted)
                       await asyncio.sleep(10)
-                      MSG = []
+                      MSG =[]
                 else:
                    new_caption = custom_caption(message, caption)
                    details = {"msg_id": message.id, "media": media(message), "caption": new_caption, 'button': button, "protect": protect}
@@ -187,21 +187,13 @@ async def pub_(bot, message):
 
 async def copy(user, bot, msg, m, sts):
    try:                               
-     if msg.get("media") and msg.get("caption"):
-        await bot.send_cached_media(
-              chat_id=sts.get('TO'),
-              file_id=msg.get("media"),
-              caption=msg.get("caption"),
-              reply_markup=msg.get('button'),
-              protect_content=msg.get("protect"))
-     else:
-        await bot.copy_message(
-              chat_id=sts.get('TO'),
-              from_chat_id=sts.get('FROM'),    
-              caption=msg.get("caption"),
-              message_id=msg.get("msg_id"),
-              reply_markup=msg.get('button'),
-              protect_content=msg.get("protect"))
+     await bot.copy_message(
+           chat_id=sts.get('TO'),
+           from_chat_id=sts.get('FROM'),    
+           caption=msg.get("caption"),
+           message_id=msg.get("msg_id"),
+           reply_markup=msg.get('button'),
+           protect_content=msg.get("protect"))
    except FloodWait as e:
      await edit(user, m, 'ᴘʀᴏɢʀᴇssɪɴɢ', e.value, sts)
      await asyncio.sleep(e.value)
@@ -318,12 +310,10 @@ def custom_caption(msg, caption):
       if media:
         file_name = getattr(media, 'file_name', '')
         file_size = getattr(media, 'file_size', '')
-        fcaption = getattr(msg, 'caption', '')
-        if fcaption:
-          fcaption = fcaption.html
+        fcaption = msg.caption.html if msg.caption else ''
         if caption:
           return caption.format(filename=file_name, size=get_size(file_size), caption=fcaption)
-        return fcaption
+        return None
   return None
 
 # Don't Remove Credit Tg - @VJ_Botz
@@ -544,7 +534,7 @@ async def restart_pending_forwads(bot, user):
           k = await client.send_message(i.TO, "Testing")
           await k.delete()
        except:
-          await msg_edit(m, f"**Please Make Your [UserBot / Bot](t.me/{_bot['username']}) Admin In Target Channel With Full Permissions**", retry_btn(forward_id), True)
+          await msg_edit(m, f"**Please Make Your[UserBot / Bot](t.me/{_bot['username']}) Admin In Target Channel With Full Permissions**", retry_btn(forward_id), True)
           return await stop(client, user)
     except:
        return await db.rmve_frwd(user)
@@ -572,7 +562,7 @@ async def restart_pending_forwads(bot, user):
             dup_files.append(ofile["file_id"])
     if locked:
         try:
-          MSG = []
+          MSG =[]
           pling=0
           await edit(user, m, 'ᴘʀᴏɢʀᴇssɪɴɢ', 5, sts)
           async for message in iter_messages(client, chat_id=sts.get("FROM"), limit=sts.get("limit"), offset=skiping, filters=filter, max_size=max_size):
@@ -620,7 +610,7 @@ async def restart_pending_forwads(bot, user):
                       await forward(user, client, MSG, m, sts, protect)
                       sts.add('total_files', notcompleted)
                       await asyncio.sleep(10)
-                      MSG = []
+                      MSG =[]
                 else:
                    new_caption = custom_caption(message, caption)
                    details = {"msg_id": message.id, "media": media(message), "caption": new_caption, 'button': button, "protect": protect}
@@ -661,86 +651,4 @@ async def store_vars(user_id):
 async def restart_forwards(client):
     users = await db.get_all_frwd()
     count = await db.forwad_count()
-    tasks = []
-    async for user in users:
-        tasks.append(restart_pending_forwads(client, user))
-    random_seconds = random.randint(0, 300)
-    minutes = random_seconds // 60
-    seconds = random_seconds % 60
-    await asyncio.gather(*tasks)
-    print('Done')
-
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
-async def update_forward(user_id, chat_id, start_time, toid, last_id, limit, forward_id, msg_id, fetched, total, duplicate, deleted, skip, filterd):
-    details = {
-        'chat_id': chat_id,
-        'toid': toid,
-        'forward_id': forward_id,
-        'last_id': last_id,
-        'limit': limit,
-        'msg_id': msg_id,
-        'start_time': start_time,
-        'fetched': fetched,
-        'offset': fetched,
-        'deleted': deleted,
-        'total': total,
-        'duplicate': duplicate,
-        'skip': skip,
-        'filtered':filterd
-    }
-    await db.update_forward(user_id, details)
-
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
-async def get_bot_uptime(start_time):
-    # Calculate the uptime in seconds
-    uptime_seconds = int(time.time() - start_time)
-    uptime_minutes = uptime_seconds // 60
-    uptime_hours = uptime_minutes // 60
-    uptime_days = uptime_hours // 24
-    uptime_weeks = uptime_days // 7
-    uptime_string = ""
-    if uptime_weeks != 0:
-        uptime_string += f"{uptime_weeks % 7}w, "
-    if uptime_days != 0:
-        uptime_string += f"{uptime_days % 24}d, "
-    if uptime_hours != 0:
-        uptime_string += f"{uptime_hours % 24}h, "
-    if uptime_minutes != 0:
-        uptime_string += f"{uptime_minutes % 60}m, "
-    uptime_string += f"{uptime_seconds % 60}s"
-    return uptime_string  
-
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
-async def complete_time(total_files, files_per_minute=30):
-    minutes_required = total_files / files_per_minute
-    seconds_required = minutes_required * 60
-    weeks = seconds_required // (7 * 24 * 60 * 60)
-    days = (seconds_required % (7 * 24 * 60 * 60)) // (24 * 60 * 60)
-    hours = (seconds_required % (24 * 60 * 60)) // (60 * 60)
-    minutes = (seconds_required % (60 * 60)) // 60
-    seconds = seconds_required % 60
-    time_format = ""
-    if weeks > 0:
-        time_format += f"{int(weeks)}w, "
-    if days > 0:
-        time_format += f"{int(days)}d, "
-    if hours > 0:
-        time_format += f"{int(hours)}h, "
-    if minutes > 0:
-        time_format += f"{int(minutes)}m, "
-    if seconds > 0:
-        time_format += f"{int(seconds)}s"
-    return time_format
-
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
+    tasks =
