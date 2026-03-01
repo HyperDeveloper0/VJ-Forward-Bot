@@ -108,7 +108,7 @@ async def pub_(bot, message):
     await msg_edit(m, "<code>processing...</code>") 
     temp.IS_FRWD_CHAT.append(i.TO)
     temp.lock[user] = locked = True
-    dup_files =[]
+    dup_files = []
     if locked:
         try:
           MSG =[]
@@ -161,7 +161,12 @@ async def pub_(bot, message):
                       MSG =[]
                 else:
                    new_caption = custom_caption(message, caption)
-                   details = {"msg_id": message.id, "media": media(message), "caption": new_caption, 'button': button, "protect": protect}
+                   try:
+                       msg_text = message.text.html if message.text else None
+                   except:
+                       msg_text = message.text if message.text else None
+                       
+                   details = {"msg_id": message.id, "media": media(message), "text": msg_text, "caption": new_caption, 'button': button, "protect": protect}
                    await copy(user, client, details, m, sts)
                    sts.add('total_files')
                    await asyncio.sleep(sleep) 
@@ -186,22 +191,56 @@ async def pub_(bot, message):
 # Ask Doubt on telegram @KingVJ01
 
 async def copy(user, bot, msg, m, sts):
-   try:                               
-     await bot.copy_message(
-           chat_id=sts.get('TO'),
-           from_chat_id=sts.get('FROM'),    
-           caption=msg.get("caption"),
-           message_id=msg.get("msg_id"),
-           reply_markup=msg.get('button'),
-           protect_content=msg.get("protect"))
+   try:
+       await bot.copy_message(
+             chat_id=sts.get('TO'),
+             from_chat_id=sts.get('FROM'),    
+             caption=msg.get("caption"),
+             message_id=msg.get("msg_id"),
+             reply_markup=msg.get('button'),
+             protect_content=msg.get("protect"))
    except FloodWait as e:
-     await edit(user, m, 'ᴘʀᴏɢʀᴇssɪɴɢ', e.value, sts)
-     await asyncio.sleep(e.value)
-     await edit(user, m, 'ᴘʀᴏɢʀᴇssɪɴɢ', 5, sts)
-     await copy(user, bot, msg, m, sts)
+       await edit(user, m, 'ᴘʀᴏɢʀᴇssɪɴɢ', e.value, sts)
+       await asyncio.sleep(e.value)
+       await edit(user, m, 'ᴘʀᴏɢʀᴇssɪɴɢ', 5, sts)
+       await copy(user, bot, msg, m, sts)
    except Exception as e:
-     print(e)
-     sts.add('deleted')
+       err_str = str(e).lower()
+       try:
+           # If copy_message fails because of Bot's own previous keyboards not being allowed (ex: Channel restriction)
+           if "button" in err_str or "keyboard" in err_str or "reply_markup" in err_str:
+               await bot.copy_message(
+                     chat_id=sts.get('TO'),
+                     from_chat_id=sts.get('FROM'),    
+                     caption=msg.get("caption"),
+                     message_id=msg.get("msg_id"),
+                     reply_markup=msg.get('button') or InlineKeyboardMarkup([]),
+                     protect_content=msg.get("protect"))
+           else:
+               # Fallback to direct sending for media or text to bypass generic copy restriction
+               if msg.get("media"):
+                   await bot.send_cached_media(
+                         chat_id=sts.get('TO'),
+                         file_id=msg.get("media"),
+                         caption=msg.get("caption") if msg.get("caption") else "",
+                         reply_markup=msg.get('button'),
+                         protect_content=msg.get("protect"))
+               elif msg.get("text"):
+                   await bot.send_message(
+                         chat_id=sts.get('TO'),
+                         text=msg.get("text"),
+                         reply_markup=msg.get('button'),
+                         protect_content=msg.get("protect"))
+               else:
+                   raise e
+       except FloodWait as e:
+           await edit(user, m, 'ᴘʀᴏɢʀᴇssɪɴɢ', e.value, sts)
+           await asyncio.sleep(e.value)
+           await edit(user, m, 'ᴘʀᴏɢʀᴇssɪɴɢ', 5, sts)
+           await copy(user, bot, msg, m, sts)
+       except Exception as ex:
+           print(f"Error in copy fallback: {ex}")
+           sts.add('deleted')
 
 # Don't Remove Credit Tg - @VJ_Botz
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
@@ -310,10 +349,12 @@ def custom_caption(msg, caption):
       if media:
         file_name = getattr(media, 'file_name', '')
         file_size = getattr(media, 'file_size', '')
-        fcaption = msg.caption.html if msg.caption else ''
+        fcaption = getattr(msg, 'caption', '')
+        if fcaption:
+          fcaption = fcaption.html
         if caption:
           return caption.format(filename=file_name, size=get_size(file_size), caption=fcaption)
-        return None
+        return fcaption
   return None
 
 # Don't Remove Credit Tg - @VJ_Botz
@@ -528,7 +569,7 @@ async def restart_pending_forwads(bot, user):
        try: 
           await client.get_messages(sts.get("FROM"), sts.get("limit"))
        except:
-          await msg_edit(m, f"**Source chat may be a private channel / group. Use userbot (user must be member over there) or  if Make Your [Bot](t.me/{_bot['username']}) an admin over there**", retry_btn(firwd_id), True)
+          await msg_edit(m, f"**Source chat may be a private channel / group. Use userbot (user must be member over there) or  if Make Your [Bot](t.me/{_bot['username']}) an admin over there**", retry_btn(forward_id), True)
           return await stop(client, user)
        try:
           k = await client.send_message(i.TO, "Testing")
@@ -613,7 +654,12 @@ async def restart_pending_forwads(bot, user):
                       MSG =[]
                 else:
                    new_caption = custom_caption(message, caption)
-                   details = {"msg_id": message.id, "media": media(message), "caption": new_caption, 'button': button, "protect": protect}
+                   try:
+                       msg_text = message.text.html if message.text else None
+                   except:
+                       msg_text = message.text if message.text else None
+                       
+                   details = {"msg_id": message.id, "media": media(message), "text": msg_text, "caption": new_caption, 'button': button, "protect": protect}
                    await copy(user, client, details, m, sts)
                    sts.add('total_files')
                    await asyncio.sleep(sleep) 
