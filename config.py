@@ -5,13 +5,13 @@
 from os import environ 
 
 class Config:
-    API_ID = int(environ.get("API_ID", "27358729"))
-    API_HASH = environ.get("API_HASH", "6910fe5c69fb5fb2214162099ffe526c")
-    BOT_TOKEN = environ.get("BOT_TOKEN", "") 
+    API_ID = int(environ.get("API_ID", "28858160"))
+    API_HASH = environ.get("API_HASH", "fa69ee6c10f12673377ba41923eb9f16")
+    BOT_TOKEN = environ.get("BOT_TOKEN", "8203971017:AAGmciHkCB46n0MiLjHJAmWqlI_zpmQvdpE") 
     BOT_SESSION = environ.get("BOT_SESSION", "vjbot") 
     DATABASE_URI = environ.get("DATABASE_URI", "mongodb+srv://codecanvas93:MOgWu6DhrRYqunsc@rapid-forwarder.ankh5.mongodb.net/?retryWrites=true&w=majority&appName=rapid-forwarder")
     DATABASE_NAME = environ.get("DATABASE_NAME", "rapid-forwarder")
-    BOT_OWNER = int(environ.get("BOT_OWNER", "7265713248"))
+    BOT_OWNER = int(environ.get("BOT_OWNER", "8311658488"))
 
 # Don't Remove Credit Tg - @VJ_Botz
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
