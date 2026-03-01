@@ -9,8 +9,8 @@ class Config:
     API_HASH = environ.get("API_HASH", "fa69ee6c10f12673377ba41923eb9f16")
     BOT_TOKEN = environ.get("BOT_TOKEN", "8203971017:AAGmciHkCB46n0MiLjHJAmWqlI_zpmQvdpE") 
     BOT_SESSION = environ.get("BOT_SESSION", "vjbot") 
-    DATABASE_URI = environ.get("DATABASE_URI", "mongodb+srv://codecanvas93:MOgWu6DhrRYqunsc@rapid-forwarder.ankh5.mongodb.net/?retryWrites=true&w=majority&appName=rapid-forwarder")
-    DATABASE_NAME = environ.get("DATABASE_NAME", "rapid-forwarder")
+    DATABASE_URI = environ.get("DATABASE_URI", "mongodb+srv://donori1701_db_user:a6j6JJqdbUtXOZMy@clonetest.gehyb2u.mongodb.net/?appName=clonetest")
+    DATABASE_NAME = environ.get("DATABASE_NAME", "clonedbtest")
     BOT_OWNER = int(environ.get("BOT_OWNER", "8311658488"))
 
 # Don't Remove Credit Tg - @VJ_Botz
